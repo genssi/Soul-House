@@ -4,6 +4,11 @@ import "./header.scss";
 const Header = () => {
     return (
         <header className="header">
+            <h1 className="header__title">
+                <Link to="/">
+                    <span>Nuray</span> baskets
+                </Link>
+            </h1>
             <nav className="navbar">
                 <ul className="navbar-nav">
                     <li className="nav-item">
