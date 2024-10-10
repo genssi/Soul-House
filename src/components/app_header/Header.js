@@ -3,13 +3,13 @@ import "./header.scss";
 
 const Header = () => {
     return (
-        <header className="header">
-            <h1 className="header__title">
+        <header className="app__header">
+            <h1 className="app__title">
                 <Link to="/">
                     <span>Nuray</span> baskets
                 </Link>
             </h1>
-            <nav className="navbar">
+            <nav className="app__menu">
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <NavLink exact to="/" className="nav-link" activeClassName="active">Home</NavLink>
