@@ -1,0 +1,62 @@
+@import "../../../style/variables.scss";
+
+.app__content {
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 70px;
+
+    .intro-info {
+        color: #333;
+    }
+
+    .basket-icon {
+        font-size: 3rem;
+        margin: 20px 0;
+        color: #ff6600;
+        transition: transform 0.3s, color 0.3s;
+    }
+
+    &:hover .basket-icon {
+        animation: shake 0.5s ease-in-out;
+        color: $main-color;
+    }
+}
+
+.app__feedback {
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 50px;
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 1rem;
+    }
+
+    .feedback-icon {
+        font-size: 2rem;
+        margin-top: 15px;
+        color: $main-color;
+        transition: transform 0.3s, color 0.3s;
+    }
+
+    &:hover .feedback-icon {
+        transform: scale(1.1);
+        color: #ff6600;
+    }
+}
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(-5px, 0); }
+    50% { transform: translate(5px, 0); }
+    75% { transform: translate(-5px, 0); }
+    100% { transform: translate(0); }
+}
