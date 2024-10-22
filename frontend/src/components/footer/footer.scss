@@ -12,17 +12,48 @@
 
     .footer__menu {
         margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
 
         a {
             color: #ff7f50;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 5px 10px;
             font-size: 0.9rem;
             transition: color 0.3s ease;
 
             &:hover {
                 color: #ff6347;
             }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .app__footer {
+        padding: 20px 15px;
+        
+        p {
+            font-size: 0.8rem;
+        }
+
+        .footer__menu a {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .app__footer {
+        padding: 15px 10px;
+
+        p {
+            font-size: 0.75rem;
+        }
+
+        .footer__menu a {
+            font-size: 0.75rem;
         }
     }
 }

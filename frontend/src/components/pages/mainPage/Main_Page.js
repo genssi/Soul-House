@@ -15,7 +15,7 @@ const MainPage = () => {
         <>
             <ErrorBoundary>
                 <Helmet>
-                    <title>Nuray Baskets</title>
+                    <title>Soul House</title>
                     <meta
                         name="description"
                         content="Marvel information portal"

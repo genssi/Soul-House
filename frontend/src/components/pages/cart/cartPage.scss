@@ -74,6 +74,33 @@
     }
 }
 
+@media (max-width: 768px) {
+    .cart-page {
+        padding: 15px;
+        margin-top: 80px;
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .cart-item {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+        }
+
+        span {
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        
+        button {
+            width: 40%;
+            padding: 8px;
+        }
+    }
+}
+
 .order-modal {
     max-width: 500px;
     width: 90%;
@@ -151,6 +178,32 @@
         &:hover {
             background-color: #c82333;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .order-modal {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    form div {
+        margin-bottom: 8px;
+    }
+
+    input,
+    select {
+        padding: 10px;
+    }
+
+    .order-button,
+    .cancel-button {
+        padding: 10px;
+        font-size: 1rem;
     }
 }
 

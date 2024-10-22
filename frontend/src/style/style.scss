@@ -30,6 +30,7 @@ a {
     text-decoration: none;
     color: inherit;
     display: inline-block;
+
     &:hover {
         text-decoration: none;
         color: inherit;
@@ -55,26 +56,74 @@ input::-webkit-inner-spin-button {
     margin: 0 auto;
     padding: 30px 0 0 0;
     position: relative;
+
+    @media (max-width: 1200px) {
+        width: 90%; /* Уменьшение ширины на больших экранах */
+        padding: 20px 0;
+    }
+
+    @media (max-width: 992px) {
+        padding: 15px 0;
+    }
+
+    @media (max-width: 768px) {
+        width: 95%; /* Полная ширина на средних экранах */
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    @media (max-width: 576px) {
+        padding: 5px 0; /* Уменьшение отступов на малых экранах */
+    }
 }
 
 main {
     flex: 1;
     margin-top: 50px;
     position: relative;
+
+    @media (max-width: 768px) {
+        margin-top: 30px; /* Уменьшение верхнего отступа на мобильных устройствах */
+    }
+
+    @media (max-width: 576px) {
+        margin-top: 20px; /* Дополнительное уменьшение на малых экранах */
+    }
 }
 
 .pulse {
-    animation: pulse 1.5s ease-in-out .5s infinite
+    animation: pulse 1.5s ease-in-out .5s infinite;
 }
 
 @keyframes pulse {
     0% {
-        opacity: 1
+        opacity: 1;
     }
     50% {
-        opacity: .4
+        opacity: .4;
     }
     100% {
-        opacity: 1
+        opacity: 1;
     }
+}
+
+// Дополнительные медиазапросы для других элементов (если нужно)
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem; /* Уменьшение размера заголовка на мобильных */
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.9rem; /* Уменьшение размера текста на мобильных */
+    }
+
+    // Другие элементы, которые требуют адаптации
 }

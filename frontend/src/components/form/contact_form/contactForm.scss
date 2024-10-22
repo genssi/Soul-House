@@ -17,10 +17,11 @@
         max-width: 800px;
         max-height: 400px;
         width: 100%;
+        flex-direction: row;
     }
     
     .form-block, .image-block {
-        flex: 1; // Равномерно распределяем место между формой и изображением
+        flex: 1;
         padding: 20px;
     }
     
@@ -33,13 +34,13 @@
         justify-content: center;
         align-items: center;
         padding: 0;
-        background-color: #e0e0e0; // Цвет фона для блока с изображением
+        background-color: #e0e0e0;
     }
     
     .decorative-image {
         max-width: 100%;
         height: auto;
-        border-radius: 10px; // Добавляем закругленные углы к изображению, если нужно
+        border-radius: 10px;
     }
 
     h2 {
@@ -85,8 +86,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 1rem;
-            transition: background-color 0.9s ease;
-            transition: 0.5s transform;
+            transition: background-color 0.3s ease, transform 0.5s ease;
 
             &:hover {
                 background-color: #0b8003;
@@ -112,5 +112,53 @@
         &.error {
             color: #dc3545;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form-container {
+        flex-direction: column;
+        max-height: none;
+    }
+
+    .form-block, .image-block {
+        padding: 15px;
+    }
+
+    .decorative-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .contact-form {
+        gap: 10px;
+    }
+
+    .button__form {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form-section .form-block {
+        background-color: rgb(237, 231, 231);
+    }
+
+    .contact-form-container h2 {
+        font-size: 1.2rem;
+    }
+
+    .contact-form-section .contact-form .form-group .form-input{
+        font-size: 0.8rem;
+    }
+
+    .contact-form-section .image-block {
+        display: none;
+    }
+
+    .status-message {
+        font-size: 0.9rem;
     }
 }

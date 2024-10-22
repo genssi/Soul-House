@@ -4,17 +4,64 @@
     &__header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        width: 100%;
+        background-color: white;
+        z-index: 1000;
+
+        @media (max-width: 600px) {
+            flex-direction: row;
+            align-items: center;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
     }
+
     &__title {
         font-weight: bold;
         font-size: 28px;
         line-height: 37px;
 
+        @media (max-width: 600px) {
+            font-size: 22px;
+            line-height: 30px;
+            text-align: center;
+        }
+
         span {
             color: $main-color;
         }
     }
+
     &__menu {
+        display: flex;
+        flex-direction: row;
+
+        @media (max-width: 600px) {
+            display: none;
+        }
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: white;
+            z-index: 1000;
+            padding: 20px 0;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
         ul {
             display: flex;
             justify-content: space-between;
@@ -22,9 +69,22 @@
             font-size: 24px;
             line-height: 32px;
 
+            @media (max-width: 600px) {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                font-size: 18px;
+                line-height: 24px;
+            }
+
             li {
                 margin: 0 8px;
-                a:hover {
+
+                @media (max-width: 600px) {
+                    margin: 0;
+                }
+
+                a:hover, a:active {
                     color: $main-color;
                 }
             }
@@ -35,14 +95,103 @@
                 border-radius: 50%;
                 padding: 2px 6px;
                 font-size: 0.75rem;
-                margin-left: 5px;
                 position: relative;
                 top: -5px;
+
+                @media (max-width: 600px) {
+                    top: 0;
+                    margin-left: 0;
+                    padding: 3px 8px;
+                }
             }
         }
+    }
+
+    .burger {
+        display: none;
+    
+        @media (max-width: 600px) {
+            display: block;
+            cursor: pointer;
+            margin-left: auto;
+        }
+    
+        .cart-count {
+            background-color: #ff0000;
+            color: #fff;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            position: absolute;
+            top: 15px;
+            right: 5px;
+        }
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 900;
+        backdrop-filter: blur(5px); // Размытие фона
+        animation: fadeIn 0.3s ease;
+    }
+}
+
+.burger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 20px;
+
+    div {
+        height: 3px;
+        width: 100%;
+        background-color: #000;
+        transition: all 0.3s ease;
+
+        &:nth-child(1) {
+        }
+
+        &:nth-child(2) {
+        }
+
+        &:nth-child(3) {
+        }
+    }
+
+    &.active {
+        div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        div:nth-child(2) {
+            opacity: 0;
+        }
+
+        div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
 .activeStyle {
     color: #9f0013;
+
+    @media (max-width: 600px) {
+        font-size: 16px;
+    }
 }

@@ -25,13 +25,13 @@ const ContactList = () => {
 const ContactLinks = ({ visible }) => {
     return (
         <div className={`contact-links ${visible ? 'visible' : ''}`}>
-            <a href="https://t.me/genss_gitignore" target="_blank" rel="noopener noreferrer">
+            <a href="https://t.me/soul_housee" target="_blank" rel="noopener noreferrer">
                 <img src="https://cdn-icons-png.flaticon.com/128/2111/2111646.png" alt="Telegram" />
             </a>
-            <a href="https://wa.me/996501623303" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/996501880180" target="_blank" rel="noopener noreferrer">
                 <img src="https://cdn-icons-png.flaticon.com/128/15707/15707820.png" alt="WhatsApp" />
             </a>
-            <a href="https://www.instagram.com/genss____/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/soul_house_kg?igsh=MTBtOTRhOTRhMWF2Mg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
                 <img src="https://cdn-icons-png.flaticon.com/128/15707/15707749.png" alt="Instagram" />
             </a>
         </div>
