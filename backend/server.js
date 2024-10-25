@@ -7,7 +7,7 @@ const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
