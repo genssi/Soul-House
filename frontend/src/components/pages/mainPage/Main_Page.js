@@ -18,7 +18,7 @@ const MainPage = () => {
                     <title>Soul House</title>
                     <meta
                         name="description"
-                        content="Marvel information portal"
+                        content="Soul House корзины и акссесуары"
                     />
                 </Helmet>
                 <ErrorBoundary>
