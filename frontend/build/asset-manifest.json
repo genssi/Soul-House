@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1cf79b76.css",
+    "main.js": "/static/js/main.32ee7b02.js",
+    "static/media/mathias-reding-EL4wsej7U9Q-unsplash.jpg": "/static/media/mathias-reding-EL4wsej7U9Q-unsplash.40f94effd15ed705cb16.jpg",
+    "static/media/paul-hanaoka-0Qar87UXlGA-unsplash.jpg": "/static/media/paul-hanaoka-0Qar87UXlGA-unsplash.99f9db01be33ce8dc1f4.jpg",
+    "index.html": "/index.html",
+    "main.1cf79b76.css.map": "/static/css/main.1cf79b76.css.map",
+    "main.32ee7b02.js.map": "/static/js/main.32ee7b02.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1cf79b76.css",
+    "static/js/main.32ee7b02.js"
+  ]
+}
