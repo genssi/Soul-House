@@ -6,7 +6,7 @@ const useBasketService = () => {
 
     const getBaskets = useCallback(async (offset=0, limit=5) => {
         try {
-            const data = await request(`http://localhost:3001/api/products?_start=${offset}&_limit=${limit}`);
+            const data = await request(`https://mybaskets.online/api/products?_start=${offset}&_limit=${limit}`);
             return data;
         } catch (error) {
             throw error;
@@ -15,7 +15,7 @@ const useBasketService = () => {
 
     const getBasketByID = useCallback(async (id) => {
         try {
-            const data = await request(`http://localhost:3001/api/products/${id}`);
+            const data = await request(`https://mybaskets.online/api/products/${id}`);
             return data;
         } catch (error) {
             throw error;
@@ -24,7 +24,7 @@ const useBasketService = () => {
 
     const sendToTelegram = useCallback(async (name, phone) => {
         try {
-            await request('http://localhost:3001/api/sendMessage', 'POST', { name, phone });
+            await request('https://mybaskets.online/api/sendMessage', 'POST', { name, phone });
         } catch (error) {
             throw error;
         }
@@ -32,7 +32,7 @@ const useBasketService = () => {
 
     const sendOrderToTelegram = useCallback(async (orderData) => {
         try {
-            await request('http://localhost:3001/api/sendOrder', 'POST', orderData);
+            await request('https://mybaskets.online/api/sendOrder', 'POST', orderData);
         } catch (error) {
             throw error;
         }
@@ -40,7 +40,7 @@ const useBasketService = () => {
 
     const login = useCallback(async (username, password) => {
         try {
-            const data = await request('http://localhost:3001/api/login', 'POST', { username, password });
+            const data = await request('https://mybaskets.online/api/login', 'POST', { username, password });
             if (data && data.success) {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('isAuthenticated', true);
@@ -55,7 +55,7 @@ const useBasketService = () => {
 
     const deleteProduct = useCallback(async (id) => {
         try {
-            await request(`http://localhost:3001/api/products/${id}`, 'DELETE');
+            await request(`https://mybaskets.online/api/products/${id}`, 'DELETE');
         } catch (error) {
             throw error;
         }

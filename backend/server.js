@@ -11,10 +11,10 @@ const PORT = process.env.PORT || 3001;
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Указываем папку для хранения файлов
+        cb(null, 'uploads/');
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname); // Генерируем уникальное имя файла
+        cb(null, Date.now() + '-' + file.originalname);
     }
 });
 
@@ -22,7 +22,7 @@ const upload = multer({ storage });
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://mybaskets.online',
     methods: ['GET', 'POST', 'DELETE'],
     credentials: true
 }));
@@ -33,15 +33,13 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const adminLogin = process.env.ADMIN_USERNAME;
 const adminPassword = process.env.ADMIN_PASSWORD;
 
-// Генерация JWT токена
 const generateToken = (username) => {
-    return jwt.sign({ username }, JWT_SECRET, { expiresIn: '1h' }); // Токен истекает через 1 час
+    return jwt.sign({ username }, JWT_SECRET, { expiresIn: '1h' });
 };
 
-// Маршрут для добавления продукта с изображением
 app.post('/api/products', upload.single('image'), (req, res) => {
     const { name, price } = req.body;
-    const image = req.file ? `http://localhost:3001/uploads/${req.file.filename}` : null;
+    const image = req.file ? `https://mybaskets.online/uploads/${req.file.filename}` : null;
 
     if (!image) {
         return res.status(400).send('Image is required');
@@ -69,7 +67,6 @@ app.post('/api/products', upload.single('image'), (req, res) => {
     });
 });
 
-// Маршрут для отправки сообщения в Telegram при запросе на обратную связь
 app.post('/api/sendMessage', async (req, res) => {
     const { name, phone } = req.body;
     const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
@@ -88,7 +85,6 @@ app.post('/api/sendMessage', async (req, res) => {
     }
 });
 
-// Маршрут для отправки данных заказа в Telegram
 app.post('/api/sendOrder', async (req, res) => {
     const { name, phone, address, paymentMethod, total, items } = req.body;
     const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
@@ -119,19 +115,17 @@ app.post('/api/sendOrder', async (req, res) => {
     }
 });
 
-// маршрут для проверки логина и пароля
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
     if (username === adminLogin && password === adminPassword) {
-        const token = generateToken(username); // Генерация токена
-        res.status(200).json({ success: true, token }); // Отправка токена
+        const token = generateToken(username);
+        res.status(200).json({ success: true, token });
     } else {
         res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 });
 
-// Получить все продукты
 app.get('/api/products', (req, res) => {
     fs.readFile('db.json', 'utf8', (err, data) => {
         if (err) {
@@ -142,21 +136,18 @@ app.get('/api/products', (req, res) => {
         const { _start, _limit } = req.query;
 
         if (!_start && !_limit) {
-            return res.json(products); // Возвращаем все продукты
+            return res.json(products);
         }
 
-        // Преобразуем _start и _limit в числа
-        const start = parseInt(_start, 10) || 0; // По умолчанию 0
-        const limit = parseInt(_limit, 10) || products.length; // По умолчанию возвращаем все продукты
+        const start = parseInt(_start, 10) || 0;
+        const limit = parseInt(_limit, 10) || products.length;
 
-        // Обрезаем массив с учетом start и limit
         const slicedProducts = products.slice(start, start + limit);
 
         res.json(slicedProducts);
     });
 });
 
-// Получить продукт по ID
 app.get('/api/products/:id', (req, res) => {
     const { id } = req.params;
 
@@ -175,7 +166,6 @@ app.get('/api/products/:id', (req, res) => {
     });
 });
 
-// Добавить новый продукт
 app.post('/api/products', (req, res) => {
     const newProduct = req.body;
 
@@ -184,7 +174,7 @@ app.post('/api/products', (req, res) => {
             return res.status(500).send('Ошибка чтения файла');
         }
         const jsonData = JSON.parse(data);
-        newProduct.id = jsonData.baskets.length + 1; // Генерация ID
+        newProduct.id = jsonData.baskets.length + 1;
         jsonData.baskets.push(newProduct);
 
         fs.writeFile('db.json', JSON.stringify(jsonData, null, 2), (err) => {
@@ -196,7 +186,6 @@ app.post('/api/products', (req, res) => {
     });
 });
 
-// Удалить продукт
 app.delete('/api/products/:id', (req, res) => {
     const { id } = req.params;
 
@@ -205,10 +194,9 @@ app.delete('/api/products/:id', (req, res) => {
             return res.status(500).send('Ошибка чтения файла');
         }
         const jsonData = JSON.parse(data);
-        const initialLength = jsonData.baskets.length; // Для проверки, был ли продукт удален
+        const initialLength = jsonData.baskets.length;
         jsonData.baskets = jsonData.baskets.filter(product => product.id !== parseInt(id));
 
-        // Проверка, был ли удален продукт
         if (jsonData.baskets.length === initialLength) {
             return res.status(400).json({ message: 'Ошибка при удалении продукта: продукт не найден.' });
         }
@@ -222,9 +210,8 @@ app.delete('/api/products/:id', (req, res) => {
     });
 });
 
-// Путь для доступа к загруженным изображениям
 app.use('/uploads', express.static('uploads'));
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on https://mybaskets.online`);
 });
