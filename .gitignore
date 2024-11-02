@@ -11,7 +11,9 @@
 /coverage
 
 # production
-
+build
+/frontend/build
+/backend/build.
 
 # backend uploads
 /backend/uploads
