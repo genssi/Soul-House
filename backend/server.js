@@ -22,8 +22,8 @@ const upload = multer({ storage });
 
 app.use(express.json());
 app.use(cors({
-    origin: 'https://mybaskets.online',
-    methods: ['GET', 'POST', 'DELETE'],
+    origin: ['https://mybaskets.online', 'https://www.mybaskets.online'],
+    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true
 }));
 
@@ -36,6 +36,8 @@ const adminPassword = process.env.ADMIN_PASSWORD;
 const generateToken = (username) => {
     return jwt.sign({ username }, JWT_SECRET, { expiresIn: '1h' });
 };
+
+app.options('/api/*', cors()); // Обработка preflight запросов для всех API
 
 app.post('/api/products', upload.single('image'), (req, res) => {
     const { name, price } = req.body;
