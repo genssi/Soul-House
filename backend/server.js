@@ -37,7 +37,7 @@ const generateToken = (username) => {
     return jwt.sign({ username }, JWT_SECRET, { expiresIn: '1h' });
 };
 
-app.options('/api/*', cors()); // Обработка preflight запросов для всех API
+app.options('*', cors());
 
 app.post('/api/products', upload.single('image'), (req, res) => {
     const { name, price } = req.body;

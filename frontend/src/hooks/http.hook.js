@@ -17,7 +17,8 @@ const useHttp = () => {
             const response = await fetch(url, {
                 method,
                 body: body instanceof FormData ? body : body ? JSON.stringify(body) : null,
-                headers
+                headers,
+                credentials: 'include'
             });
             
             if (!response.ok) {
