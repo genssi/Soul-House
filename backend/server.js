@@ -21,11 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.use(express.json());
-app.use(cors({
-    origin: ['https://mybaskets.online', 'https://www.mybaskets.online'],
-    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-    credentials: true
-}));
+app.use(cors());
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
