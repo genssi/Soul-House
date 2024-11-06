@@ -37,7 +37,7 @@ app.options('*', cors());
 
 app.post('/api/products', upload.single('image'), (req, res) => {
     const { name, price } = req.body;
-    const image = req.file ? `https://mybaskets.online/uploads/${req.file.filename}` : null;
+    const image = req.file ? `https://mybaskets.online/api/uploads/${req.file.filename}` : null;
 
     if (!image) {
         return res.status(400).send('Image is required');
