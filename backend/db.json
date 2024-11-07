@@ -1,10 +1,5 @@
 {
   "baskets": [
-    {
-      "id": 1,
-      "name": "test1",
-      "price": "600",
-      "thumbnail": "https://mybaskets.online/api/uploads/1729660633685-PHOTO-2024-10-17-21-25-19.jpg"
-    }
+
   ]
 }
