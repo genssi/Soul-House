@@ -9,7 +9,12 @@ const useHttp = () => {
         setError(null); // Сбрасываем ошибку при новом запросе
 
         try {
-            // Если body — это FormData, не устанавливаем Content-Type, он будет установлен автоматически
+            // Если есть токен, добавляем его в заголовок
+            const token = localStorage.getItem('token');  // или из cookie
+            if (token) {
+                headers['Authorization'] = `Bearer ${token}`;
+            }
+            
             if (!(body instanceof FormData)) {
                 headers['Content-Type'] = 'application/json';
             }
@@ -30,6 +35,7 @@ const useHttp = () => {
             const data = method === "GET" ? await response.json() : null;
 
             setLoading(false);
+            console.log('Token:', token);
             return data;
         } catch (error) {
             setLoading(false);
