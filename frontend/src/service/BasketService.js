@@ -44,10 +44,10 @@ const useBasketService = () => {
             if (data && data.success) {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('isAuthenticated', true);
+                return data;
             } else {
                 throw new Error(data?.message || 'Login failed');
             }
-            return data;
         } catch (error) {
             throw error;
         }

@@ -30,7 +30,7 @@ const AdminPanel = () => {
             const data = await getBaskets(0, Infinity);
             setProducts(data);
         } catch (error) {
-            throw new Error (error);
+            toast.error("Ошибка загрузки данных продуктов", {position: "bottom-center"});
         }
     };
 
@@ -51,7 +51,7 @@ const AdminPanel = () => {
     
         try {
             clearError();
-            await request("http://localhost:3001/api/products", "POST", formData, {
+            await request("https://mybaskets.online/api/products", "POST", formData, {
                 'Authorization': `Bearer ${token}`
             });
             setName("");
