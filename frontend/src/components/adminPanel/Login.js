@@ -17,9 +17,8 @@ const Login = () => {
 
         try {
             const response = await login(username, password);
-
-            if (response.success) {
-                localStorage.setItem('isAuthenticated', 'true'); // сохраняем статус авторизации
+            if (response.success && response.token) {
+                localStorage.setItem('token', response.token);
                 navigate("/admin");
             } else {
                 setNotification("Неверный логин или пароль");

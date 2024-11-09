@@ -17,7 +17,7 @@ const AdminPanel = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!localStorage.getItem('isAuthenticated')) {
+        if (!localStorage.getItem('token')) {
             navigate('/login');
         } else {
             fetchProducts();
