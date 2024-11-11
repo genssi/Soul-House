@@ -43,6 +43,7 @@ const useBasketService = () => {
             const data = await request('https://mybaskets.online/api/login', 'POST', { username, password });
             if (data && data.success) {
                 localStorage.setItem('token', data.token);
+                console.log(data);
                 return data;
             } else {
                 throw new Error(data?.message || 'Login failed');
