@@ -126,8 +126,10 @@ app.post('/api/login', (req, res) => {
     if (username === adminLogin && password === adminPassword) {
         const token = generateToken(username);
         if (!token) {
+            console.log("Ошибка создания токена");
             return res.status(500).json({ success: false, message: 'Error generating token' });
         }
+        console.log("Токен успешно создан:", token);
         res.status(200).json({ success: true, token });
     } else {
         res.status(401).json({ success: false, message: 'Invalid credentials' });
