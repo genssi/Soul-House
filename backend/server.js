@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const corsOptions = {
-    origin: 'https://mybaskets.online',
+    origin: ['https://mybaskets.online', 'https://www.mybaskets.online'],
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true 
