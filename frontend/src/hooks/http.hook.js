@@ -32,7 +32,8 @@ const useHttp = () => {
                 throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
             }
 
-            const data = method === "GET" ? await response.json() : null;
+            // const data = method === "GET" ? await response.json() : null;
+            const data = await response.json();
 
             setLoading(false);
             console.log('Token:', token);
