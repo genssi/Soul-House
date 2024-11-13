@@ -19,14 +19,11 @@ const Login = () => {
             const response = await login(username, password);
             if (response.success && response.token) {
                 localStorage.setItem('token', response.token);
-                alert("Токен успешно сохранен:", response.token);
                 navigate("/admin");
             } else {
-                alert("Token не сохранен");
                 setNotification("Неверный логин или пароль");
             }
         } catch (error) {
-            alert(error);
             setNotification("Ошибка при входе. Пожалуйста, попробуйте снова.");
         }
     };

@@ -41,10 +41,8 @@ const useBasketService = () => {
     const login = useCallback(async (username, password) => {
         try {
             const data = await request('https://www.mybaskets.online/api/login', 'POST', { username, password });
-            alert("Ответ сервера: " + JSON.stringify(data));
             if (data && data.success) {
                 localStorage.setItem('token', data.token);
-                alert("token:", data.token);
                 return data;
             } else {
                 throw new Error(data?.message || 'Login failed');

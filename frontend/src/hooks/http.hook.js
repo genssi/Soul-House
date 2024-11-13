@@ -18,8 +18,6 @@ const useHttp = () => {
                 headers['Content-Type'] = 'application/json';
             }
 
-            console.log("Заголовки запроса:", headers);
-
             const response = await fetch(url, {
                 method,
                 body: body instanceof FormData ? body : body ? JSON.stringify(body) : null,
@@ -36,7 +34,6 @@ const useHttp = () => {
             const data = await response.json();
 
             setLoading(false);
-            console.log('Token:', token);
             return data;
         } catch (error) {
             setLoading(false);
