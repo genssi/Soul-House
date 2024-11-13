@@ -22,20 +22,13 @@ const upload = multer({ storage });
 
 const corsOptions = {
     origin: ["https://mybaskets.online", "https://www.mybaskets.online"],
-    methods: ["GET", "POST", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
 };
 
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://mybaskets.online");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
-    next();
-});
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -46,8 +39,6 @@ const adminPassword = process.env.ADMIN_PASSWORD;
 const generateToken = (username) => {
     return jwt.sign({ username }, JWT_SECRET, { expiresIn: "1h" });
 };
-
-app.options("*", cors());
 
 app.post("/api/products", upload.single("image"), (req, res) => {
     const { name, price } = req.body;
