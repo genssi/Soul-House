@@ -22,9 +22,11 @@ const Login = () => {
                 console.log("Токен успешно сохранен:", response.token);
                 navigate("/admin");
             } else {
+                console.log("Token не сохранен");
                 setNotification("Неверный логин или пароль");
             }
         } catch (error) {
+            console.log(error);
             setNotification("Ошибка при входе. Пожалуйста, попробуйте снова.");
         }
     };
