@@ -37,7 +37,7 @@ const generateToken = (username) => {
 app.post("/api/products", upload.single("image"), (req, res) => {
     const { name, price } = req.body;
     const image = req.file
-        ? `https://www.mybaskets.online/api/uploads/${req.file.filename}`
+        ? `https://www.mybaskets.online/uploads/${req.file.filename}`
         : null;
 
     if (!image) {
