@@ -22,17 +22,17 @@ const upload = multer({ storage });
 
 const corsOptions = {
     origin: (origin, callback) => {
-      const allowedOrigins = ['https://mybaskets.online', 'https://www.mybaskets.online'];
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
+        const allowedOrigins = ['https://mybaskets.online', 'https://www.mybaskets.online'];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
     },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
-  };
+};
 
 app.use(express.json());
 app.use(cors(corsOptions));
