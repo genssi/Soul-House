@@ -34,6 +34,11 @@ const AdminPanel = () => {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
     const handleImageChange = (e) => {
         setImage(e.target.files[0]);
     };
@@ -142,6 +147,8 @@ const AdminPanel = () => {
                         </ul>
                     )}
                 </div>
+
+                <button onClick={handleLogout}>Выйти</button>
 
                 <ToastContainer />
             </div>
