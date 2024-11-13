@@ -51,7 +51,7 @@ const AdminPanel = () => {
     
         try {
             clearError();
-            await request("https://mybaskets.online/api/products", "POST", formData, {
+            await request("https://www.mybaskets.online/api/products", "POST", formData, {
                 'Authorization': `Bearer ${token}`
             });
             setName("");

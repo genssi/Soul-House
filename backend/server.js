@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const corsOptions = {
-    origin: "https://mybaskets.online",
+    origin: "https://www.mybaskets.online",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -43,7 +43,7 @@ const generateToken = (username) => {
 app.post("/api/products", upload.single("image"), (req, res) => {
     const { name, price } = req.body;
     const image = req.file
-        ? `https://mybaskets.online/api/uploads/${req.file.filename}`
+        ? `https://www.mybaskets.online/api/uploads/${req.file.filename}`
         : null;
 
     if (!image) {
