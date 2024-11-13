@@ -5,6 +5,8 @@ const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 require("dotenv").config();
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
+console.log("TELEGRAM_BOT_TOKEN:", process.env.TELEGRAM_BOT_TOKEN);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
