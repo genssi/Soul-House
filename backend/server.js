@@ -20,22 +20,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const corsOptions = {
-    origin: (origin, callback) => {
-        const allowedOrigins = ['https://mybaskets.online', 'https://www.mybaskets.online'];
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-};
-
 app.use(express.json());
-app.use(cors(corsOptions));
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
