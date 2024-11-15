@@ -1,6 +1,5 @@
 const express = require("express");
 const fs = require("fs");
-const cors = require("cors");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
