@@ -41,7 +41,6 @@
         }
 
         @media (max-width: 480px) {
-            grid-template-columns: 1fr;
             column-gap: 10px;
             row-gap: 15px;
         }
@@ -62,6 +61,10 @@
 
         @media (max-width: 600px) {
             padding: 10px;
+        }
+
+        @media (max-width: 480px) {
+            max-width: 200px;
         }
 
         &:hover , &:active {
