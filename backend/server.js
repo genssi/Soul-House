@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const axios = require("axios");
+const path = require("path");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 require("dotenv").config();
@@ -9,10 +10,12 @@ console.log("TELEGRAM_BOT_TOKEN:", process.env.TELEGRAM_BOT_TOKEN);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const DB_PATH = path.join(__dirname, "db.json");
+const UPLOADS_PATH = path.join(__dirname, "uploads");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads/");
+        cb(null, UPLOADS_PATH);
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + "-" + file.originalname);
@@ -35,15 +38,13 @@ const generateToken = (username) => {
 
 app.post("/api/products", upload.single("image"), (req, res) => {
     const { name, price } = req.body;
-    const image = req.file
-        ? `https://www.mybaskets.online/uploads/${req.file.filename}`
-        : null;
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
 
     if (!image) {
         return res.status(400).send("Image is required");
     }
 
-    fs.readFile("db.json", "utf8", (err, data) => {
+    fs.readFile(DB_PATH, "utf8", (err, data) => {
         if (err) {
             return res.status(500).send("Ошибка чтения файла");
         }
@@ -56,7 +57,7 @@ app.post("/api/products", upload.single("image"), (req, res) => {
         };
         jsonData.baskets.push(newProduct);
 
-        fs.writeFile("db.json", JSON.stringify(jsonData, null, 2), (err) => {
+        fs.writeFile(DB_PATH, JSON.stringify(jsonData, null, 2), (err) => {
             if (err) {
                 return res.status(500).send("Ошибка записи файла");
             }
@@ -139,7 +140,7 @@ app.post("/api/login", (req, res) => {
 });
 
 app.get("/api/products", (req, res) => {
-    fs.readFile("db.json", "utf8", (err, data) => {
+    fs.readFile(DB_PATH, "utf8", (err, data) => {
         if (err) {
             return res.status(500).send("Ошибка чтения файла");
         }
@@ -163,7 +164,7 @@ app.get("/api/products", (req, res) => {
 app.get("/api/products/:id", (req, res) => {
     const { id } = req.params;
 
-    fs.readFile("db.json", "utf8", (err, data) => {
+    fs.readFile(DB_PATH, "utf8", (err, data) => {
         if (err) {
             return res.status(500).send("Ошибка чтения файла");
         }
@@ -178,30 +179,10 @@ app.get("/api/products/:id", (req, res) => {
     });
 });
 
-app.post("/api/products", (req, res) => {
-    const newProduct = req.body;
-
-    fs.readFile("db.json", "utf8", (err, data) => {
-        if (err) {
-            return res.status(500).send("Ошибка чтения файла");
-        }
-        const jsonData = JSON.parse(data);
-        newProduct.id = jsonData.baskets.length + 1;
-        jsonData.baskets.push(newProduct);
-
-        fs.writeFile("db.json", JSON.stringify(jsonData, null, 2), (err) => {
-            if (err) {
-                return res.status(500).send("Ошибка записи файла");
-            }
-            res.status(201).json(newProduct);
-        });
-    });
-});
-
 app.delete("/api/products/:id", (req, res) => {
     const { id } = req.params;
 
-    fs.readFile("db.json", "utf8", (err, data) => {
+    fs.readFile(DB_PATH, "utf8", (err, data) => {
         if (err) {
             return res.status(500).send("Ошибка чтения файла");
         }
@@ -219,7 +200,7 @@ app.delete("/api/products/:id", (req, res) => {
                 });
         }
 
-        fs.writeFile("db.json", JSON.stringify(jsonData, null, 2), (err) => {
+        fs.writeFile(DB_PATH, JSON.stringify(jsonData, null, 2), (err) => {
             if (err) {
                 return res.status(500).send("Ошибка записи файла");
             }
@@ -228,8 +209,8 @@ app.delete("/api/products/:id", (req, res) => {
     });
 });
 
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(UPLOADS_PATH));
 
 app.listen(PORT, () => {
-    console.log(`Server is running on https://mybaskets.online`);
+    console.log(`Server is running on port ${PORT}`);
 });
