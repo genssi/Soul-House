@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const fs = require("fs");
 const axios = require("axios");
 const path = require("path");
@@ -9,6 +10,13 @@ console.log("JWT_SECRET:", process.env.JWT_SECRET);
 console.log("TELEGRAM_BOT_TOKEN:", process.env.TELEGRAM_BOT_TOKEN);
 
 const app = express();
+app.use(cors({
+  origin: [
+    "https://mybaskets.store",
+    "https://www.mybaskets.store"
+  ],
+  credentials: true
+}));
 const PORT = process.env.PORT || 3001;
 const DB_PATH = path.join(__dirname, "db.json");
 const UPLOADS_PATH = path.join(__dirname, "uploads");
