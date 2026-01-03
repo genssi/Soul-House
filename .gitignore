@@ -13,7 +13,7 @@
 # production
 build
 /frontend/build
-/backend/build.
+/backend/build
 
 # backend uploads
 /backend/uploads
